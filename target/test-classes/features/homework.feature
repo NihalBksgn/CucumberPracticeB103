@@ -23,7 +23,7 @@
       And   kullanıcı adini "<email>" girer
       And   kullanici sifreyi "<password>" girer
       And   kullanici login butonuna basar
-      Then  kullanici login oldugunu dogrular
+      Then  kullanici login oldugunu "email" ile dogrular
       Then  kullanici sayfayi kapatir
 
       Examples: blue_rental_giris_bilgileri
@@ -32,3 +32,21 @@
         |  kate.brown@bluerentalcars.com    |      tad1$Fas     |
         |  raj.khan@bluerentalcars.com      |      v7Hg_va^     |
         |  pam.raymond@bluerentalcars.com   |      Nga^g6!      |
+
+
+      @negativeTest
+      Scenario Outline: TC01_negatif_login_test
+        Given kullanici homepage "https://www.bluerentalcars.com/" gider
+        When  kullanici loginLinke tiklar
+        And   kullanıcı adini "<email>" girer
+        And   kullanici sifreyi "<password>" girer
+        And   kullanici login butonuna basar
+        Then kullanici hata mesaji aldigini dogrular
+        Then kullanici sayfayi kapatir
+
+        Examples:negative_giris_bilgileri
+        |email             |password  |
+        |manager@gmail.com | 3654351  |
+        |manager1@gmail.com|df3654351 |
+        |manager2@gmail.com|hz3654351 |
+        |manager3@gmail.com|tuj3654351|

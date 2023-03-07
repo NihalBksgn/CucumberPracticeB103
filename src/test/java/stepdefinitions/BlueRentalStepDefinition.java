@@ -7,6 +7,8 @@ import org.junit.Assert;
 import pages.BlueRentalPage;
 import utilities.Driver;
 
+import java.util.Arrays;
+
 public class BlueRentalStepDefinition {
     BlueRentalPage blueRentalPage;
 
@@ -33,17 +35,25 @@ public class BlueRentalStepDefinition {
     }
 
     @When("kullanici login butonuna basar")
-    public void kullanici_login_butonuna_basar() {
+    public void kullanici_login_butonuna_basar() throws InterruptedException {
         blueRentalPage.loginButton.click();
+        Thread.sleep(2000);
     }
 
-    @Then("kullanici login oldugunu dogrular")
-    public void kullanici_login_oldugunu_dogrular() {
+    @Then("kullanici login oldugunu {string} ile dogrular")
+    public void kullanici_login_oldugunu_dogrular(String string) {
         Assert.assertTrue(blueRentalPage.dogrulamaButonu.isDisplayed());
     }
 
     @Then("kullanici sayfayi kapatir")
     public void kullaniciSayfayiKapatir() {
         Driver.closeDriver();
+    }
+
+
+    @Then("kullanici hata mesaji aldigini dogrular")
+    public void kullanici_hata_mesaji_aldigini_dogrular() {
+
+        Assert.assertTrue(blueRentalPage.hataMesaji.isDisplayed());
     }
 }
