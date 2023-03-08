@@ -4,6 +4,9 @@ package stepdefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import utilities.Driver;
 
 public class Hooks {
 
@@ -31,13 +34,15 @@ public class Hooks {
         System.out.println("Browser kapatıldı");
     }
     @After
-    public void tearDown(Scenario scenario){  // Scenario tipinde bir parametre atamasi yapılır
-        final byte[]
-        //final -> bir degiskenin degerinin degistirilemez oldugunu belirtir
-        //byte[] -> bir byte dizisi tanımlar.Byte dizeleri sıralı veri depolama ve isleme islemleri icin
-        //kullanilir.Verilerin depolanmasi,iletilmesi ve okunmasi icin kullanilan cesitli dosya türleri
-        //resimler ve diger verileri saklamak icin kullanilir.
-
+    public void tearDown(Scenario scenario){ //Scenario tipinde bir parametre ataması yapılır
+        final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+        if(scenario.isFailed()){
+            scenario.attach(screenshot,"image/jpeg","screenshot");
+        }
+        Driver.closeDriver();
+        //final -> bir değişkenin değerinin değiştirilemez olduğunu belirtir
+        //byte[]-> bir byte dizisi tanımlar. Byte dizeleri, sıralı veri depolama ve işleme işlemleri için
+        //kullanılır.Verilerin depolanması, iletilmesi ve okunması için kullanılan çeşitli dosya türleri,
+        //resimler ve diğer verileri saklamak için kullanılır.
     }
-
 }
