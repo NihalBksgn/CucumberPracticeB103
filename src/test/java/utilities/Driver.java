@@ -29,6 +29,7 @@ public class Driver {
     static WebDriver driver;
 
     public static WebDriver getDriver() {
+        System.setProperty("webdriver.http.factory","jdk-http-client");
         if (driver == null) {//EĞER DRIVER'A DEĞER ATANMAMIŞSA DEĞER ATA, EĞER DEĞER ATANMIŞŞSA DRİVER'I AYNI SAYFADA RETURN ET
             switch (ConfigReader.getProperty("browser")) {
                 case "chrome":
