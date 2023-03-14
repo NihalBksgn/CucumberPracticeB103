@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: Guru_Web_Tables
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 8.288 s <<< FAILURE! - in Guru_Web_Tables
+TC_16_kullanici_liste_alabilmeli(Guru_Web_Tables)  Time elapsed: 8.288 s  <<< FAILURE!
+java.lang.AssertionError
+

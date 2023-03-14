@@ -16,6 +16,7 @@ public class AmazonStepDefinition {
     @Given("kullanici amazona gider")
     public void kullaniciAmazonaGider() {
         Driver.getDriver().get(ConfigReader.getProperty("amazonUrl"));
+
     }
 
     @When("kullanici iphone için arama yapar")
@@ -71,5 +72,18 @@ public class AmazonStepDefinition {
     @Then("sayfa basliginin {string} icerdigini test eder")
     public void sayfaBasligininIcerdiginiTestEder(String string) {
         Assert.assertTrue(Driver.getDriver().getTitle().contains(string));
+    }
+
+    @Then("kullanici sql samsung ve nokia aramasi yapar basliklari test eder")
+    public void kullaniciSqlSamsungVeNokiaAramasiYaparBasliklariTestEder() {
+        amazonPage= new AmazonPage();
+        amazonPage.aramaKutusu.sendKeys(ConfigReader.getProperty("kelime1"),Keys.ENTER);
+        Assert.assertTrue((Driver.getDriver().getTitle().contains(ConfigReader.getProperty("kelime1"))));
+        amazonPage.aramaKutusu.clear();
+        amazonPage.aramaKutusu.sendKeys(ConfigReader.getProperty("kelime2"),Keys.ENTER);
+        Assert.assertTrue((Driver.getDriver().getTitle().contains(ConfigReader.getProperty("kelime2"))));
+        amazonPage.aramaKutusu.clear();
+        amazonPage.aramaKutusu.sendKeys(ConfigReader.getProperty("kelime3"),Keys.ENTER);
+        Assert.assertTrue((Driver.getDriver().getTitle().contains(ConfigReader.getProperty("kelime3"))));
     }
 }

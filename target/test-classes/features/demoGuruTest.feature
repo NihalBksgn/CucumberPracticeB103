@@ -12,3 +12,4 @@ Feature: Guru_Web_Tables
     Given kullanici homepage "http://demo.guru99.com/test/web-table-element.php" gider
     Then Company listesini consola yazdirir.
     And kullanici "DCB Bank" in listede oldugunu gorur
+    
